@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaga Tuns | Personal Fitness Coach</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4500;
+      --dark: #0a0a0a;
+      --card-bg: #161616;
+      --text: #ffffff;
+      --text-muted: #b0b0b0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--text);
+    }
+    .logo span { color: var(--primary); }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+    
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(10,10,10,1)), 
+                  url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+    }
+    .hero-content {
+      max-width: 650px;
+    }
+    .hero-tag {
+      background: var(--primary);
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #e03d00;
+    }
+
+    section { padding: 100px 8%; }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+    .section-title span { color: var(--primary); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(255, 69, 0, 0.2);
+    }
+    .about-text h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .stat-box h4 {
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 35px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+    }
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 350px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    }
+
+    .contact-container {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #fff;
+    }
+    .contact-form button {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #222;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.8rem; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">GAGA <span>TUNS</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Programs</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">Certified Fitness Coach</span>
+      <h1>Transform Your Body & Mind</h1>
+      <p>Customized training, strength conditioning, and nutrition plans designed to help you unlock your peak fitness potential.</p>
+      <a href="#contact" class="btn">Start Your Transformation</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80" alt="Gaga Tuns Coaching">
+      </div>
+      <div class="about-text">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Meet <span>Gaga Tuns</span></h2>
+        <h3>Dedicated to Your Peak Performance</h3>
+        <p>With over 7 years of hands-on coaching experience, I help clients build functional strength, lose fat, and develop long-term healthy habits. Whether you're a beginner or an athlete, my approach is tailored to your unique goals.</p>
+        <div class="stats">
+          <div class="stat-box">
+            <h4>500+</h4>
+            <p>Clients Trained</p>
+          </div>
+          <div class="stat-box">
+            <h4>7+</h4>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat-box">
+            <h4>100%</h4>
+            <p>Commitment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="background: #0f0f0f;">
+    <h2 class="section-title">Coaching <span>Programs</span></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>1-on-1 Personal Training</h3>
+        <p>In-person tailored workout sessions with high accountability, correct form guidance, and progressive overload tracking.</p>
+      </div>
+      <div class="service-card">
+        <h3>Online Fitness Coaching</h3>
+        <p>Customized workout programs, video exercise breakdowns, weekly check-ins, and direct daily messaging access.</p>
+      </div>
+      <div class="service-card">
+        <h3>Nutrition & Meal Planning</h3>
+        <p>Macro-based nutrition strategies and sustainable meal guidance engineered for fat loss and muscle retention.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase">
+    <h2 class="section-title">Fitness <span>Showcase</span></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Strength Training">
+        <div class="gallery-overlay">
+          <h4>Heavy Strength Work</h4>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80" alt="Cardio & Conditioning">
+        <div class="gallery-overlay">
+          <h4>High-Intensity Conditioning</h4>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80" alt="Personalized Coaching">
+        <div class="gallery-overlay">
+          <h4>1-on-1 Form Correction</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background: #0f0f0f;">
+    <h2 class="section-title">Work With <span>Gaga Tuns</span></h2>
+    <div class="contact-container">
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Goals (e.g. Weight loss, Muscle gain)" required></textarea>
+        <button type="submit" class="btn">Send Inquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Gaga Tuns Fitness. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
